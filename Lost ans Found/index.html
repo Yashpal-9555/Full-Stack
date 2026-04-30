@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Lost & Found</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Preline UI (for dropdowns/modals) -->
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#33539E',
+                        secondary: '#E8B7D4',
+                        background: '#BFB8DA',
+                        accent: '#A5678E',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background dark:bg-gray-900 transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="bg-primary dark:bg-primary-dark text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-search fa-lg mr-2"></i>
+                        <span class="text-xl font-semibold">College Lost & Found</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="#home" class="px-3 py-2 rounded-md text-sm font-medium bg-white text-primary dark:bg-gray-800 dark:text-white">Home</a>
+                        <a href="#report" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-white hover:text-primary dark:hover:bg-gray-800 dark:hover:text-white">Report</a>
+                        <a href="#search" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-white hover:text-primary dark:hover:bg-gray-800 dark:hover:text-white">Search</a>
+                        <button id="theme-toggle" class="p-2 rounded-full hover:bg-white hover:text-primary dark:hover:bg-gray-800 dark:hover:text-white">
+                            <i class="fas fa-moon dark:hidden"></i>
+                            <i class="fas fa-sun hidden dark:block"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-accent focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-primary dark:bg-primary-dark">
+            <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white">Home</a>
+            <a href="#report" class="block px-3 py-2 rounded-md text-base font-medium text-white">Report</a>
+            <a href="#search" class="block px-3 py-2 rounded-md text-base font-medium text-white">Search</a>
+            <button id="theme-toggle-mobile" class="block px-3 py-2 rounded-md text-base font-medium text-white w-full text-left">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i> Toggle Theme
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="parallax bg-gradient-to-r from-primary to-accent dark:from-primary-dark dark:to-gray-800 text-white py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Lost Something on Campus?</h1>
+            <p class="text-xl md:text-2xl mb-8">Our community helps reunite lost items with their owners</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#report" class="bg-white text-primary font-bold py-3 px-6 rounded-lg hover:bg-secondary hover:text-white transition duration-300">Report Found Item</a>
+                <a href="#search" class="bg-transparent border-2 border-white text-white font-bold py-3 px-6 rounded-lg hover:bg-white hover:text-primary transition duration-300">Search Lost Items</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Items Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8 text-primary dark:text-white">Recently Found Items</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="recent-items">
+                <!-- Dynamic content loaded via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Form Section -->
+    <section id="report" class="py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-secondary-dark">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8 text-primary dark:text-white">Report Found Item</h2>
+            <form id="report-form" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="item-type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Item Type</label>
+                        <select id="item-type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+                            <option value="">Select item type</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="accessories">Accessories</option>
+                            <option value="books">Books & Notes</option>
+                            <option value="keys">Keys</option>
+                            <option value="wallet">Wallet/Purse</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="location" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Found Location</label>
+                        <select id="location" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+                            <option value="">Select location</option>
+                            <option value="library">Library</option>
+                            <option value="cafeteria">Cafeteria</option>
+                            <option value="lab">Computer Lab</option>
+                            <option value="sports">Sports Complex</option>
+                            <option value="classroom">Classroom</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                    <textarea id="description" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white" required></textarea>
+                </div>
+
+                <div>
+                    <label for="verification" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Verification Question (for owner)</label>
+                    <input type="text" id="verification" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="e.g., 'What color is the case?'" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Upload Image</label>
+                    <div class="mt-1 flex items-center">
+                        <input type="file" id="item-image" class="hidden" accept="image/*">
+                        <label for="item-image" class="cursor-pointer bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            Choose File
+                        </label>
+                        <span id="file-name" class="ml-2 text-sm text-gray-500 dark:text-gray-400">No file chosen</span>
+                    </div>
+                    <div id="image-preview-container" class="mt-2 hidden">
+                        <img id="image-preview" class="image-preview rounded-md">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:bg-accent dark:hover:bg-accent-dark">
+                    Submit Report
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search" class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8 text-primary dark:text-white">Search Lost Items</h2>
+            <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                <div class="flex flex-col md:flex-row gap-4 mb-6">
+                    <input type="text" id="search-input" placeholder="Search by keyword..." class="flex-grow rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <button id="search-button" class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:bg-accent dark:hover:bg-accent-dark">
+                        Search
+                    </button>
+                </div>
+                <div id="search-results" class="space-y-4">
+                    <!-- Search results will appear here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary dark:bg-primary-dark text-white py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-lg font-semibold">College Lost & Found</h3>
+                    <p class="text-sm text-secondary dark:text-gray-300">Helping reunite lost items since 2023</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-secondary dark:hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-secondary dark:hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-secondary dark:hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-sm text-secondary dark:text-gray-300">
+                <p>&copy; 2023 College Lost & Found. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="script.js"></script>
+</body>
+</html>
