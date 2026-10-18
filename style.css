@@ -1,0 +1,61 @@
+body {
+    background: #e4c6c6;  /*  background color */
+    color : white;  /* text color */ 
+    font-size: 25px;  
+    margin-top: 5px;
+}
+
+div{
+    padding-top: 5vh;  /* spacing to elements*/
+}
+
+
+/* Selectors in css 
+ * Universal Selector
+
+ # id select 
+ . class selector
+
+*/
+
+/*   
+ All p elements inside a div 
+div p {
+    color: blue;
+}
+
+ Only p elements that are direct children of a div 
+div > p {
+    color: red;
+}
+
+ The first p immediately after an h2 
+h2 + p {
+    font-weight: bold;
+}
+
+ Every p sibling that follows an h2 
+h2 ~ p {
+    text-decoration: underline;
+}
+
+*/
+
+
+/* 
+         TOPOGRAPHY
+p {
+    font-family: Arial, sans-serif;    chooses the font.
+    font-size: 18px;                   controls text size.
+    font-weight: 400;                  controls thickness, often 400 for normal and 700 for bold.
+    font-style: italic;
+    line-height: 1.6;                  controls line spacing.
+    letter-spacing: 1px;
+    text-align: justify;               aligns text.
+    text-transform: none;              changes capitalization.  
+} 
+  
+*/
+
+
+
