@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pokemon Explorer | Pokedex</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="logo">
+            <span>Poké</span>mon
+        </div>
+
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#" class="active">Pokédex</a>
+            <a href="#">Video Games</a>
+            <a href="#">Card Game</a>
+            <a href="#">Pokémon TV</a>
+            <a href="#">Events</a>
+            <a href="#">News</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="header-search" aria-label="Search">
+                <i class="search-icon"></i>
+            </button>
+
+            <div class="profile-icon">P</div>
+        </div>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="main-container">
+
+        <h1 class="page-title">Pokédex</h1>
+
+
+        <!-- Search Section -->
+        <section class="search-section">
+
+            <div class="search-box">
+
+                <span class="search-symbol">⌕</span>
+
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Pokemon name or number or type"
+                    autocomplete="off"
+                >
+
+                <button id="search-btn" class="search-btn">
+                    Search
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Explorer Layout -->
+        <section class="explorer-layout">
+
+
+            <!-- Filter Sidebar -->
+            <aside class="filter-sidebar">
+
+                <!-- Type Filter -->
+                <div class="filter-group">
+
+                    <label for="type-filter">Type</label>
+
+                    <select id="type-filter">
+                        <option value="">All Types</option>
+                        <option value="normal">Normal</option>
+                        <option value="fire">Fire</option>
+                        <option value="water">Water</option>
+                        <option value="grass">Grass</option>
+                        <option value="electric">Electric</option>
+                        <option value="ice">Ice</option>
+                        <option value="fighting">Fighting</option>
+                        <option value="poison">Poison</option>
+                        <option value="ground">Ground</option>
+                        <option value="flying">Flying</option>
+                        <option value="psychic">Psychic</option>
+                        <option value="bug">Bug</option>
+                        <option value="rock">Rock</option>
+                        <option value="ghost">Ghost</option>
+                        <option value="dragon">Dragon</option>
+                        <option value="dark">Dark</option>
+                        <option value="steel">Steel</option>
+                        <option value="fairy">Fairy</option>
+                    </select>
+
+                </div>
+
+
+                <!-- Weakness Filter -->
+                <div class="filter-group">
+
+                    <label for="weakness-filter">Weakness</label>
+
+                    <select id="weakness-filter">
+                        <option value="">All Weaknesses</option>
+                        <option value="fire">Fire</option>
+                        <option value="water">Water</option>
+                        <option value="grass">Grass</option>
+                        <option value="electric">Electric</option>
+                        <option value="ice">Ice</option>
+                        <option value="fighting">Fighting</option>
+                        <option value="poison">Poison</option>
+                        <option value="ground">Ground</option>
+                        <option value="flying">Flying</option>
+                        <option value="psychic">Psychic</option>
+                        <option value="bug">Bug</option>
+                        <option value="rock">Rock</option>
+                        <option value="ghost">Ghost</option>
+                        <option value="dragon">Dragon</option>
+                        <option value="dark">Dark</option>
+                        <option value="steel">Steel</option>
+                        <option value="fairy">Fairy</option>
+                    </select>
+
+                </div>
+
+
+                <!-- Ability Filter -->
+                <div class="filter-group">
+
+                    <label for="ability-filter">Ability</label>
+
+                    <select id="ability-filter">
+                        <option value="">All Abilities</option>
+                    </select>
+
+                </div>
+
+
+                <!-- Height Filter -->
+                <div class="filter-group checkbox-group">
+
+                    <p class="filter-heading">Height</p>
+
+                    <label>
+                        <input type="checkbox" name="height" value="small">
+                        Small
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="height" value="medium">
+                        Medium
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="height" value="large">
+                        Large
+                    </label>
+
+                </div>
+
+
+                <!-- Weight Filter -->
+                <div class="filter-group checkbox-group">
+
+                    <p class="filter-heading">Weight</p>
+
+                    <label>
+                        <input type="checkbox" name="weight" value="light">
+                        Light
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="weight" value="medium">
+                        Middle
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="weight" value="heavy">
+                        Heavy
+                    </label>
+
+                </div>
+
+
+                <!-- Filter Buttons -->
+                <div class="filter-actions">
+
+                    <button id="apply-filter" class="apply-btn">
+                        Apply
+                    </button>
+
+                    <button id="reset-filter" class="reset-btn">
+                        Reset
+                    </button>
+
+                </div>
+
+            </aside>
+
+
+            <!-- Pokémon Content -->
+            <div class="pokemon-content">
+
+
+                <!-- Toolbar -->
+                <div class="toolbar">
+
+                    <div class="sort-control">
+
+                        <label for="sort-select">Sort by</label>
+
+                        <select id="sort-select">
+                            <option value="number">Number</option>
+                            <option value="name">Name</option>
+                            <option value="height">Height</option>
+                            <option value="weight">Weight</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="number-range">
+
+                        <label for="range-start">Number range</label>
+
+                        <input
+                            type="number"
+                            id="range-start"
+                            value="1"
+                            min="1"
+                        >
+
+                        <span>–</span>
+
+                        <input
+                            type="number"
+                            id="range-end"
+                            value="151"
+                            min="1"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Loading Message -->
+                <p id="loading-message" class="loading-message">
+                    Loading Pokémon...
+                </p>
+
+
+                <!-- Error Message -->
+                <p id="error-message" class="error-message" hidden>
+                </p>
+
+
+                <!-- Pokémon Cards -->
+                <div id="pokemon-grid" class="pokemon-grid">
+
+                    <!-- JavaScript will generate Pokémon cards here -->
+
+                </div>
+
+
+                <!-- No Results Message -->
+                <p id="no-results" class="no-results" hidden>
+                    No Pokémon found!
+                </p>
+
+
+                <!-- Pagination -->
+                <div id="pagination" class="pagination">
+
+                    <button id="prev-page" disabled>
+                        &lt;
+                    </button>
+
+                    <span id="page-number">1</span>
+
+                    <button id="next-page">
+                        &gt;
+                    </button>
+
+                </div>
+
+                <button id="load-more" class="load-more-btn">
+                     Load More Pokémon
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Pokémon Details Modal -->
+    <div id="pokemon-modal" class="modal" hidden>
+
+        <div class="modal-content">
+
+            <button id="close-modal" class="close-modal">
+                &times;
+            </button>
+
+            <div id="modal-details">
+
+                <!-- Pokémon details will be generated using JavaScript -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080d20">
+    <meta name="description" content="WeatherHub - Check current weather and five-day forecasts for your favorite cities.">
+
+    <title>WeatherHub | Weather Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="dashboard" id="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <!-- Logo and Brand -->
+            <div class="sidebar-brand">
+                <img
+                    src="assets/logo.png"
+                    alt="WeatherHub weather logo"
+                >
+                <h2>WeatherHub</h2>
+            </div>
+
+            <!-- Navigation -->
+            <nav aria-label="Main navigation">
+
+                <a
+                    href="#"
+                    id="dashboard-link"
+                    class="active"
+                    aria-current="page"
+                >
+                    <i class="fa-solid fa-house" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="#" id="forecast-link">
+                    <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                    <span>Forecast</span>
+                </a>
+
+                <a href="#" id="locations-link">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                    <span>Locations</span>
+                </a>
+
+                <a href="#" id="settings-link">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                    <span>Settings</span>
+                </a>
+
+            </nav>
+
+            <!-- Mountain Background -->
+            <div class="sidebar-landscape">
+                <img src="assets/bg.png" alt="">
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Main Header -->
+            <header class="main-header">
+
+                <div>
+                    <h2>Weather Dashboard</h2>
+                    <p>Get real-time weather updates for any city</p>
+                </div>
+
+                <!-- City Search -->
+                <div class="search-bar">
+
+                    <input
+                        type="search"
+                        placeholder="Search for a city..."
+                        aria-label="Search for a city"
+                        autocomplete="off"
+                    >
+
+                    <button type="button">Search</button>
+
+                </div>
+
+            </header>
+
+            <!-- Dashboard Page -->
+            <div class="dashboard-page">
+
+                <!-- Current Weather -->
+                <section
+                    class="weather-overview"
+                    aria-label="Current weather"
+                >
+
+                    <div class="current-weather">
+
+                        <h2>Loading weather...</h2>
+                        <p>Getting latest updates</p>
+                        <h1>--</h1>
+
+                        <span
+                            id="current-weather-icon"
+                            aria-hidden="true"
+                        >🌤️</span>
+
+                    </div>
+
+                    <!-- Weather Details -->
+                    <div class="weather-details">
+
+                        <div class="detail-card">
+                            <span class="detail-icon" aria-hidden="true">💧</span>
+                            <h2>Humidity</h2>
+                            <p>--</p>
+                        </div>
+
+                        <div class="detail-card">
+                            <span class="detail-icon" aria-hidden="true">💨</span>
+                            <h2>Wind Speed</h2>
+                            <p>--</p>
+                        </div>
+
+                        <div class="detail-card">
+                            <span class="detail-icon" aria-hidden="true">🌡️</span>
+                            <h2>Feels Like</h2>
+                            <p>--</p>
+                        </div>
+
+                        <div class="detail-card">
+                            <span class="detail-icon" aria-hidden="true">🔵</span>
+                            <h2>Pressure</h2>
+                            <p>--</p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Five-Day Forecast -->
+                <section class="forecasts" id="forecasts">
+
+                    <h1>5-Day Forecast</h1>
+
+                    <div class="forecast">
+
+                        <div class="forecast-card">
+                            <h2></h2>
+                            <p></p>
+                            <span class="forecast-icon" aria-hidden="true">🌤️</span>
+                        </div>
+
+                        <div class="forecast-card">
+                            <h2></h2>
+                            <p></p>
+                            <span class="forecast-icon" aria-hidden="true">🌤️</span>
+                        </div>
+
+                        <div class="forecast-card">
+                            <h2></h2>
+                            <p></p>
+                            <span class="forecast-icon" aria-hidden="true">🌤️</span>
+                        </div>
+
+                        <div class="forecast-card">
+                            <h2></h2>
+                            <p></p>
+                            <span class="forecast-icon" aria-hidden="true">🌤️</span>
+                        </div>
+
+                        <div class="forecast-card">
+                            <h2></h2>
+                            <p></p>
+                            <span class="forecast-icon" aria-hidden="true">🌤️</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+            <!-- Saved Locations Page -->
+            <section class="locations-page">
+
+                <header>
+                    <h1>Saved Locations</h1>
+                    <p>Manage your favorite cities</p>
+                </header>
+
+                <div class="add-location">
+
+                    <input
+                        type="text"
+                        id="location-input"
+                        placeholder="Enter city name..."
+                        aria-label="Enter a city to save"
+                        autocomplete="off"
+                    >
+
+                    <button type="button" id="add-location-btn">
+                        Add City
+                    </button>
+
+                </div>
+
+                <div
+                    class="locations-list"
+                    id="locations-list"
+                    aria-live="polite"
+                >
+                    <!-- Saved cities appear here -->
+                </div>
+
+            </section>
+
+            <!-- Settings Page -->
+            <section class="settings-page">
+
+                <header>
+                    <h1>Settings</h1>
+                    <p>Customize your weather dashboard</p>
+                </header>
+
+                <div class="settings-container">
+
+                    <div class="setting-card">
+
+                        <label for="temperature-unit">
+                            Temperature Unit
+                        </label>
+
+                        <select id="temperature-unit">
+                            <option value="celsius">Celsius (°C)</option>
+                            <option value="fahrenheit">Fahrenheit (°F)</option>
+                        </select>
+
+                    </div>
+
+                    <div class="setting-card">
+
+                        <label for="theme">Theme</label>
+
+                        <select id="theme">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="index.js"></script>
+
+</body>
+</html>
